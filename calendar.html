@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="./calendar.css">
+    <title>日历</title>
+</head>
+
+<body>
+    <div class="page_wrap">
+        <div class="calendar">
+            <div class="calendar_header">
+                <div class="first_header">
+                    <div class="switch_year" @click="preMonth">
+                        <</div> <div class="current_year">{{year}}-{{month+1}}
+                    </div>
+                    <div class="switch_year" @click="nextMonth">></div>
+                </div>
+                <div class="weekday_header">
+                    <span v-for="item in weekDays" class="each_weekday">{{item}}</span>
+                </div>
+            </div>
+            <div class="calendar_body">
+                <div class="aside_hint">
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+                    <div class="each_hint">
+                        <span>上午</span>
+                        <span>下午</span>
+                    </div>
+
+                </div>
+                <div class="day_wrap">
+                    <div class="each_day" v-for="(item,index) in calendarArr" :class="{'other_month':item.month!=month}"
+                        :key="index">
+                        <div class="day_header" :class="{'current_day':item.day==currentDay&&item.month==currentMonth}">
+                            {{item.day}}</div>
+                        <div class="day_bottom">
+                            <div class="am" @click="am_tag(index)"><span v-show="contain(am_List,index)">✔</span></div>
+                            <div class="pm" @click="pm_tag(index)"><span v-show="contain(pm_List,index)">✔</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="./calendar.js">
+</script>
+
+</html>
